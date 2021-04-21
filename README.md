@@ -58,5 +58,10 @@
   }
   </script>
   ```
-  
-
+  ## 面包屑源码解读
+  - el-breadcrumb：面包屑导航容器，`separator` 控制面包屑导航文本中分割线
+  - el-breadcrumb-item：面包屑子项目，可以使用 `to` 属性切换路由，slot 中可以包含 `a` 标签来跳转到外链
+- 获取 `this.$route.matched`，并过滤其中不包含 `item.meta.title` 的项，生成新的面包屑导航数组 `matched`
+- 判断 `matched` 第一项是否为 dashboard，如果不是，则添加 dashboard 为面包屑导航第一项
+- 再次过滤 `matched` 中 `item.meta.title` 为空的项和 `item.meta.breadcrumb` 为 false 的项
+- `el-breadcrumb-item` 内做了一个判断，如果是最后一个元素或者路由的 `redirect` 属性指定为 `noRedirect` 则不会生成链接，否则将使用 `a` 标签生成链接，但是这里使用了 `@click.prevent` 阻止了默认 `a` 标签事件触发，而使用自定义的 `handleLink` 方法处理路由跳转
