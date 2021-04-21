@@ -115,6 +115,7 @@ export default {
     }
   },
   watch: {
+    // 重定向监听
     $route: {
       handler: function(route) {
         const query = route.query
@@ -123,7 +124,7 @@ export default {
           this.otherQuery = this.getOtherQuery(query)
         }
       },
-      immediate: true
+      immediate: true// 在create就会实现
     }
   },
   mounted() {
@@ -152,6 +153,7 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
+          // 完成重定向
           this.$store.dispatch('user/login', this.loginForm)
             .then(() => {
               this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
@@ -166,6 +168,7 @@ export default {
         }
       })
     },
+    // 获取除 redirect 外的其他查询条件，登录成功后
     getOtherQuery(query) {
       return Object.keys(query).reduce((acc, cur) => {
         if (cur !== 'redirect') {
