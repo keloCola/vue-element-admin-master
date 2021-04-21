@@ -20,8 +20,12 @@
           autocomplete="on"
         />
       </el-form-item>
-
-      <el-tooltip v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
+      <!--
+- el-tooltip中
+- manual：手动控制模式，设置为 true 后，mouseenter 和 mouseleave 事件将不会生效
+- placement：提示出现的位置
+-->
+      <el-tooltip v-model="capsTooltip" content="大写字母已打开" placement="right" manual>
         <el-form-item prop="password">
           <span class="svg-container">
             <svg-icon icon-class="password" />
@@ -64,7 +68,7 @@
         </el-button>
       </div> -->
     </el-form>
-<!-- Dialog 弹出一个对话框，适合需要定制性更大的场景。
+    <!-- Dialog 弹出一个对话框，适合需要定制性更大的场景。
       <el-dialog title="Or connect with" :visible.sync="showDialog">
       Can not be simulated on local, so please combine you own business simulation! ! !
       <br>
@@ -76,6 +80,7 @@
 </template>
 
 <script>
+// eslint-disable-next-line no-unused-vars
 import { validUsername } from '@/utils/validate'
 // import SocialSign from './components/SocialSignin'
 
@@ -84,15 +89,20 @@ export default {
   // components: { SocialSign },
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
+      /* if (!validUsername(value)) {
         callback(new Error('请输入正确用户名'))
+      } else {
+        callback()
+      }*/
+      if (!value || value.length === 0) {
+        callback(new Error('请输入用户名'))
       } else {
         callback()
       }
     }
     const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error('密码不能少于6位'))
+      if (value.length < 4) {
+        callback(new Error('密码不能少于4位'))
       } else {
         callback()
       }
@@ -135,9 +145,19 @@ export default {
     }
   },
   methods: {
-    checkCapslock(e) {
-      const { key } = e
-      this.capsTooltip = key && key.length === 1 && (key >= 'A' && key <= 'Z')
+    checkCapslock({ shiftKey, key } = {}) {
+      if (key && key.length === 1) {
+        if (shiftKey && (key >= 'A' && key <= 'Z') || (!shiftKey && (key >= 'A' && key <= 'Z'))) {
+          this.capsTooltip = true
+        } else {
+          this.capsTooltip = false
+        }
+      } else {
+        this.capsTooltip = false
+      }
+      if (key === 'CapsLock' && this.capsTooltip === true) {
+        this.capsTooltip = false
+      }
     },
     showPwd() {
       if (this.passwordType === 'password') {
