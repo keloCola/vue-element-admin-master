@@ -28,7 +28,7 @@
 import path from 'path'
 import { isExternal } from '@/utils/validate'
 import Item from './Item'
-import AppLink from './Link'
+import AppLink from './Link'// applink组件
 import FixiOSBug from './FixiOSBug'
 
 export default {

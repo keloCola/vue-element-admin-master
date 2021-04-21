@@ -23,7 +23,6 @@ router.beforeEach(async(to, from, next) => {
 
   // 修改页面标题
   document.title = getPageTitle(to.meta.title)
-
   // 从 Cookie 获取 Token
   const hasToken = getToken()
 
