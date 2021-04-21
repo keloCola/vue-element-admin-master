@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-04-16 16:26:59
+ * @LastEditTime: 2021-04-21 09:53:35
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \vue-element-admin-master\src\main.js
+ */
 import Vue from 'vue'
 
 import Cookies from 'js-cookie'
@@ -14,7 +22,7 @@ import store from './store'
 import router from './router'// 全局引用路由守卫
 
 import './icons' // icon
-import './permission' // permission control许可控制
+import './permission' // permission control许可控制 或者动态
 import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters

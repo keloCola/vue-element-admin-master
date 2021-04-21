@@ -16,13 +16,13 @@ module.exports = {
 
   /**
    * @type {boolean} true | false
-   * @description Whether fix the header
+   * @description Whether fix the header 固定头部
    */
   fixedHeader: false,
 
   /**
    * @type {boolean} true | false
-   * @description Whether show the logo in sidebar
+   * @description Whether show the logo in sidebar 是否展示侧边栏logo图标
    */
   sidebarLogo: false,
 
