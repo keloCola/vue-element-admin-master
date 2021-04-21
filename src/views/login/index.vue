@@ -21,9 +21,9 @@
         />
       </el-form-item>
       <!--
-- el-tooltip中
-- manual：手动控制模式，设置为 true 后，mouseenter 和 mouseleave 事件将不会生效
-- placement：提示出现的位置
+ - el-tooltip中
+ - manual：手动控制模式，设置为 true 后，mouseenter 和 mouseleave 事件将不会生效
+ - placement：提示出现的位置
 -->
       <el-tooltip v-model="capsTooltip" content="大写字母已打开" placement="right" manual>
         <el-form-item prop="password">
@@ -138,8 +138,11 @@ export default {
     }
   },
   mounted() {
+    // 判断输入框自动对焦的位置
+    // 用户名无 则对焦到 用户名
     if (this.loginForm.username === '') {
       this.$refs.username.focus()
+    //  密码无则对焦到密码
     } else if (this.loginForm.password === '') {
       this.$refs.password.focus()
     }
