@@ -29,10 +29,11 @@ const mutations = {
 }
 
 const actions = {
-  // user login
+  // user login 登录中使用
   login({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
+      /* 发起请求*/
       login({ username: username.trim(), password: password }).then(response => {
         const { data } = response
         commit('SET_TOKEN', data.token)
