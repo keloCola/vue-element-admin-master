@@ -195,6 +195,7 @@ export default {
     },
     // 获取除 redirect 外的其他查询条件，登录成功后
     getOtherQuery(query) {
+      // 通过 reduce 过滤对象属性
       return Object.keys(query).reduce((acc, cur) => {
         if (cur !== 'redirect') {
           acc[cur] = query[cur]
