@@ -162,12 +162,14 @@ export default {
         this.capsTooltip = false
       }
     },
+    // 显示密码
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''
       } else {
         this.passwordType = 'password'
       }
+      // 显示密码后自动对焦
       this.$nextTick(() => {
         this.$refs.password.focus()
       })
