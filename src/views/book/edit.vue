@@ -1,14 +1,16 @@
 <template>
-  <Detail :is-edit="false" />
+  <detail is-edit />
 </template>
 
 <script>
 import Detail from './components/Detail'
 
 export default {
-  name: 'CreateBook',
+  name: 'EditBook',
   components: { Detail }
 }
 </script>
-<style lang='scss' scoped>
+
+<style scoped>
+
 </style>
